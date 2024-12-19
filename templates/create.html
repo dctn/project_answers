@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form action="" method="POST" class="flex flex-col justify-center items-center gap-5 w-full pt-5 mt-5">
+    {% csrf_token %}
+    <div class="w-4/5">
+        <label for="id_question" class="text-white font-bold">Question</label>
+    {{ form.question }}
+    </div>
+
+    <div class="w-4/5 ">
+        <label for="id_answer" class="text-white font-bold">Answer</label>
+        {{ form.answer }}
+        </div>
+
+    <div class="flex gap-3 w-4/5 sm:flex-row flex-col">
+        <label for="language.id_for_label" class="text-white font-bold">{{ form.language.label }}</label>
+        {{ form.language  }}
+    </div>
+
+    <button class="btn btn-success">Add</button>
+</form>
+
+{% endblock content %}

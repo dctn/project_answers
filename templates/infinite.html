@@ -1,0 +1,11 @@
+{% for question in questions  %}
+<main class='flex justify-center mt-10 '>
+    <div class="flex flex-col w-4/5 card bg-white  items-center ">
+        <h1 class="p-8 text-black font-bold text-2xl xl:text-3xl sm:text-3xl">{{ question.question  }}</h1>
+        <a href="{% url "answer" question.id %}" class='btn mb-5 max-w-sm items-center  text-white'> View answers </a>
+    </div>
+</main>
+{% endfor %}
+<div hx-get="{% url "home" %}?page={{ page|add:1 }}" hx-target="this" hx-swap="outerHTML" hx-trigger="revealed">
+    
+</div>

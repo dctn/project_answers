@@ -1,0 +1,78 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Strange Answers is used for sharing knowlegde">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <link rel="icon" href="{% static "images/favicon.png" %}" type="image/x-icon">
+    <script src="https://unpkg.com/htmx.org@2.0.3"></script>
+    {% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.2/cdn.min.js"></script> {% endcomment %}
+    <title>Strange Answers</title>
+    {% tailwind_css  %}
+</head>
+<body class="bg-gray-800">
+    <header class="flex justify-between items-center text-gray-950 p-5 bg-gradient-to-r from-blue-500 to-cyan-500  w-full">
+        <h1 class=" font-bold text-2xl" ><a href="{% url "home" %}">Strange Answers</a></h1>
+        <nav >
+            <ul class="flex gap-3 items-center hidden md:block ">
+                <li class="btn btn-error  text-xl mr-2"><a href="{% url "create" %}">Create</a></li>
+             
+                <li class="btn btn-accent  text-xl mr-2"><a href="{% url "home" %}">Home</a></li>
+                <li class="btn  btn-primary text-xl mr-2"><a href="https://instagram.com/stranger.conf">Contact</a></li>
+                <li class="btn  btn-secondary text-xl mr-2"><a href="{% url "about" %}">About</a></li>
+                {% if user.is_authenticated %}
+                <li class="btn btn-error  text-xl mr-2"><a href="{% url "account_logout" %}">Logout</a></li>
+
+                {% else %}
+                <li class="btn btn-warning  text-xl mr-2"><a href="{% url "account_login" %}">Login</a></li>
+                <li class="btn btn-warning  text-xl mr-2"><a href="{% url "account_signup" %}">Signup</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+
+
+        <nav class="md:hidden flex ">
+            <li class="btn btn-error  text-xl mr-2"><a href="{% url "create" %}">Create</a></li>
+          
+            <img src="{% static "image/menus.png" %}" alt="" class="w-8" id="toggle" onclick="change()">
+        </nav>
+
+    </header>
+{% if messages %}
+<div class="flex justify-center card items-center bg-yellow-500 text-white font-bold p-7 m-5">
+    {% for message in messages  %}
+        <h1 class="md:text-2xl xl:text-4xl text-xl">{{message}}</h1>
+    {% endfor %}
+</div>
+{% endif %}
+
+    <div class="bg-gray-500">
+        <nav>
+            <ul class="flex gap-3 items-center flex-col justify-center p-3 " id="hidden-menu"  style="display: none; ">
+                <li class="btn btn-accent  text-xl mr-2"><a href="{% url "home" %}">Home</a></li>
+                <li class="btn  btn-primary text-xl mr-2"><a href="https://instagram.com/stranger.conf">Contact</a></li>
+                <li class="btn  btn-secondary text-xl mr-2"><a href="{% url "about" %}">About</a></li>
+                {% if user.is_authenticated %}
+                <li class="btn btn-error text-sm mr-2"><a href="{% url "account_logout" %}">Logout</a></li>
+                {% else %}
+                <li class="btn btn-info  text-sm mr-2"><a href="{% url "account_login" %}">Login</a></li>
+                <li class="btn btn-warning  text-sm mr-2"><a href="{% url "account_signup" %}">Signup</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    {% block content %}
+    {% endblock content %}
+
+<footer class="flex justify-end mt-5 bottom-0">
+    <div class="bg-blue-500 w-full flex items-end justify-center text-white font-bold p-5">
+        <h1>this page was created by <span><a class="underline" href="https://instagram.com/stranger.conf">Stranger</a></h1>
+    </div>
+</footer>
+
+<script src="{% static "js/index.js" %}"></script>
+</body>
+</html>
