@@ -10,12 +10,12 @@
     <link rel="icon" href="{% static "images/favicon.png" %}" type="image/x-icon">
     <script src="https://unpkg.com/htmx.org@2.0.3"></script>
     {% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.2/cdn.min.js"></script> {% endcomment %}
-    <title>Strange Answers</title>
+    <title>Student's Answers</title>
     {% tailwind_css  %}
 </head>
 <body class="bg-gray-800">
     <header class="flex justify-between items-center text-gray-950 p-5 bg-gradient-to-r from-blue-500 to-cyan-500  w-full">
-        <h1 class=" font-bold text-2xl" ><a href="{% url "home" %}">Strange Answers</a></h1>
+        <h1 class=" font-bold text-2xl" ><a href="{% url "home" %}">Student's Answers</a></h1>
         <nav >
             <ul class="flex gap-3 items-center hidden md:block ">
                 <li class="btn btn-error  text-xl mr-2"><a href="{% url "create" %}">Create</a></li>
