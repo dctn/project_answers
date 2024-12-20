@@ -192,3 +192,5 @@ ACCOUNT_SIGNUP_REDIRECT_URL = 'home'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ACCOUNT_USERNAME_BLACKLIST = ["stranger","mahes"]
+
+ACCOUNT_EMAIL_REQUIRED = True

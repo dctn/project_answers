@@ -1,7 +1,9 @@
+{% load custom_filters %}
 {% for question in questions  %}
 <main class='flex justify-center mt-10 '>
     <div class="flex flex-col w-4/5 card sm:bg-white  items-center bg-yellow-500 ">
-        <h1 class="p-8 text-black font-bold text-2xl xl:text-3xl sm:text-3xl">{{ question.question  }}</h1>
+        <h1 class="p-8 text-black font-light text-md xl:text-3xl sm:text-2xl">{{ question.question|lower_words:100  }}</h1>
+
         <a href="{% url "answer" question.id %}" class='btn mb-5 btn-error  max-w-sm  items-center '> View answers </a>
     </div>
 </main>

@@ -5,10 +5,12 @@ from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.contrib import messages
+from pygments.lexers import guess_lexer
+from pygments.util import ClassNotFound
 import datetime 
 # Create your views here.
 def index(request):
-    all_questions = Question.objects.all()
+    all_questions = Question.objects.all().order_by("uploaded_at")
 
     if request.method == "POST":
         word = request.POST.get("search")
@@ -53,9 +55,18 @@ def create(request):
         form = QuestionForm(request.POST)
         if form.is_valid():
             data = form.save(commit=False)
-            data.user = request.user
-            data.save()
-            return redirect("answer",data.id)
+
+            try:
+                name = guess_lexer(data.answer)
+                print(name.name)
+            except ClassNotFound:
+                print("it is not a programming language")
+            if name.name != "Text only":
+                data.user = request.user
+                data.save()
+                return redirect("answer",data.id)
+            messages.error(request,"your input is  not programming language")
+            return redirect("home")
     context = {
         "form":form
     }
