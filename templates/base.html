@@ -20,7 +20,6 @@
             <ul class="flex gap-3 items-center hidden md:block ">
                 <li class="btn btn-error  text-xl mr-2"><a href="{% url "create" %}">Create</a></li>
              
-                <li class="btn btn-accent  text-xl mr-2"><a href="{% url "home" %}">Home</a></li>
                 <li class="btn  btn-primary text-xl mr-2"><a href="https://instagram.com/stranger.conf">Contact</a></li>
                 <li class="btn  btn-secondary text-xl mr-2"><a href="{% url "about" %}">About</a></li>
                 {% if user.is_authenticated %}
@@ -52,7 +51,6 @@
     <div class="bg-gray-500">
         <nav>
             <ul class="flex gap-3 items-center flex-col justify-center p-3 " id="hidden-menu"  style="display: none; ">
-                <li class="btn btn-accent  text-xl mr-2"><a href="{% url "home" %}">Home</a></li>
                 <li class="btn  btn-primary text-xl mr-2"><a href="https://instagram.com/stranger.conf">Contact</a></li>
                 <li class="btn  btn-secondary text-xl mr-2"><a href="{% url "about" %}">About</a></li>
                 {% if user.is_authenticated %}
